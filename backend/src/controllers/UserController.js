@@ -45,7 +45,7 @@ export const loginUser = async (request, reply) => {
     }
 
     const token = jwt.sign(
-      { userId: user.isSoftDeleted, email: user.email },
+      { userId: user.id, email: user.email },
       process.env.SECRET_KEY,
       { expiresIn: "3h" }
     );

@@ -1,5 +1,8 @@
 import fastifyJwt from "@fastify/jwt";
 import fastifyPlugin from "fastify-plugin";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 export default fastifyPlugin(async function (fastify, opts) {
   fastify.register(fastifyJwt, {
@@ -8,7 +11,8 @@ export default fastifyPlugin(async function (fastify, opts) {
 
   fastify.decorate("authenticate", async function (request, reply) {
     try {
-      await request.jwtVerify();
+      const decoded = await request.jwtVerify();
+      request.user = { userId: decoded.userId, email: decoded.email };
     } catch (error) {
       reply
         .status(401)

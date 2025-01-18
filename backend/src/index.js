@@ -7,6 +7,7 @@ import "./model/Like.js";
 import "./model/Comment.js";
 import "./model/associations.js";
 import jwtPlugin from "./plugins/jwtPlugin.js";
+import CarRoutes from "./routes/CarRoutes.js";
 
 const server = fastify({ logger: true });
 
@@ -20,7 +21,7 @@ const start = async () => {
 
     server.register(jwtPlugin);
     server.register(UserRoutes);
-    //server.register(carRoutes);
+    server.register(CarRoutes);
 
     await server.listen({ port: 3000 });
 

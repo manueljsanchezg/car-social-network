@@ -1,8 +1,5 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/db.js";
-import { Car } from "./Car.js";
-import { Like } from "./Like.js";
-import { Comment } from "./Comment.js";
 
 export const User = sequelize.define("user", {
   id: {
