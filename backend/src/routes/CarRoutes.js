@@ -1,4 +1,5 @@
 import { createCar, deleteUserCarById, getAllCars, getAllNoUserCars, getAllUserCars, getCarById, updateCar } from "../controllers/carController.js";
+import { getCarLikes, toggleLike } from "../controllers/LikeController.js";
 
 export default async function CarRoutes(fastify) {
   fastify.get("/cars/all", { onRequest: [fastify.authenticate] }, getAllCars);
@@ -8,4 +9,7 @@ export default async function CarRoutes(fastify) {
   fastify.post("/cars", { onRequest: [fastify.authenticate] }, createCar);
   fastify.put("/cars/:carId", { onRequest: [fastify.authenticate] }, updateCar);
   fastify.delete("/cars/:carId", { onRequest: [fastify.authenticate] }, deleteUserCarById);
+
+  fastify.post("/cars/:carId/like", { onRequest: [fastify.authenticate] }, toggleLike);
+  fastify.get("/cars/:carId/like", { onRequest: [fastify.authenticate] }, getCarLikes);
 }
