@@ -10,5 +10,8 @@ export const Comment = sequelize.define("comment", {
   message: {
     type: DataTypes.STRING,
     allowNull: false,
+    validate: {
+      len: [1, 100],
+    },
   },
 });

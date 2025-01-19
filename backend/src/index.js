@@ -16,7 +16,7 @@ const start = async () => {
     await sequelize.authenticate();
     console.log("Conexión a la base de datos establecida.");
 
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("Modelos sincronizados con la base de datos.");
 
     server.register(jwtPlugin);
