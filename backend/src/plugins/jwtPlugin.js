@@ -6,7 +6,7 @@ dotenv.config()
 
 export default fastifyPlugin(async function (fastify, opts) {
   fastify.register(fastifyJwt, {
-    secret: process.env.SECRET_KEY,
+    secret: process.env.SECRET_KEY || 'your_secret_key',
   });
 
   fastify.decorate("authenticate", async function (request, reply) {

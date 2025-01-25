@@ -1,7 +1,7 @@
 import S from "fluent-json-schema";
 
 const bodyRegisterUserSchema = S.object()
-  .prop("email", S.string().format(S.FORMATS.EMAIL).pattern(/^[^\d]+$/).required())
+  .prop("email", S.string().format(S.FORMATS.EMAIL).required())
   .prop("password", S.string().minLength(8).required());
 
 /*

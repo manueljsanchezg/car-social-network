@@ -8,8 +8,13 @@ import "./model/Comment.js";
 import "./model/associations.js";
 import jwtPlugin from "./plugins/jwtPlugin.js";
 import CarRoutes from "./routes/CarRoutes.js";
+import cors from "@fastify/cors"
 
 const server = fastify({ logger: true });
+server.register(cors, {
+  origin: 'http://localhost:5173',
+  methods: ['POST', 'PUT', 'GET', 'DELETE']
+});
 
 const start = async () => {
   try {
