@@ -8,6 +8,7 @@ import "./model/Comment.js";
 import "./model/associations.js";
 import jwtPlugin from "./plugins/jwtPlugin.js";
 import CarRoutes from "./routes/CarRoutes.js";
+import AuthRoutes from "./routes/AuthRoutes.js"
 import cors from "@fastify/cors"
 
 const server = fastify({ logger: true });
@@ -25,6 +26,7 @@ const start = async () => {
     console.log("Modelos sincronizados con la base de datos.");
 
     server.register(jwtPlugin);
+    server.register(AuthRoutes);
     server.register(UserRoutes);
     server.register(CarRoutes);
 

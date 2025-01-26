@@ -14,9 +14,7 @@ export default fastifyPlugin(async function (fastify, opts) {
       const decoded = await request.jwtVerify();
       request.user = { userId: decoded.userId, email: decoded.email };
     } catch (error) {
-      reply
-        .status(401)
-        .send({ message: "Authentication failed", error: error.message });
+      reply.status(401).send({ message: "Authentication failed", error: error.message });
     }
   });
 });

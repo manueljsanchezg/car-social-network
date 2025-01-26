@@ -1,4 +1,3 @@
-import { schemaHasRules } from "ajv/dist/compile/util.js";
 import { getAllUsers, loginUser, registerUser} from "../controllers/UserController.js";
 import { LoginUserSchema, registerUserSchema } from "../schemas/UserSchema.js";
 

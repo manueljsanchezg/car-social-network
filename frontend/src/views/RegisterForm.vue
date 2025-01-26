@@ -15,6 +15,7 @@
 <script setup>
 import { ref } from 'vue';
 import { registerUser } from '../services/userService';
+import { router } from '../routes/routes';
 
 const userData = ref({ email: "", password: "" });
 
@@ -22,6 +23,7 @@ const handleRegister = async () => {
     try {
         const response = await registerUser(userData.value);
         console.log(response.message);
+        router.push("/login")
     } catch (error) {
         console.error(error);
     }

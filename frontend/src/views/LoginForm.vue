@@ -16,6 +16,7 @@
 import { ref } from 'vue';
 import { loginUser } from '../services/userService';
 import { emailStorage, jwtStorage } from '../storage/userStorage';
+import { router } from '../routes/routes';
 
 const userData = ref({ email: "", password: "" });
 
@@ -25,6 +26,7 @@ const handleLogin = async () => {
         console.log(response.token);
         emailStorage.value = response.email;
         jwtStorage.value = response.token;
+        router.push("/");
     } catch (error) {
         console.error(error);
     }
