@@ -1,37 +1,21 @@
 import { Op } from "sequelize";
 import { Car } from "../model/Car.js";
 
-export const getAllCars = async (request, reply) => {
+export const getCars = async (request, reply) => {
   try {
     console.log(request.user);
     console.log("=================");
-    const cars = await Car.findAll();
+    console.log("Query recibida:", request.query);
+    const { type } = request.query;
+    let whereClause = {};
+    if (type === "user") {
+      whereClause = { userId: request.user.userId };
+    } else if (type === "no-user") {
+      whereClause = { userId: { [Op.ne]: request.user.userId } };
+    }
 
-    reply.send({ cars });
-  } catch (error) {
-    reply.status(500).send({ error });
-  }
-};
+    const cars = await Car.findAll({ where: whereClause });
 
-export const getAllUserCars = async (request, reply) => {
-  try {
-    const cars = await Car.findAll({ where: { userId: request.user.userId } });
-
-    reply.send({ cars });
-  } catch (error) {
-    reply.status(500).send({ error });
-  }
-};
-
-export const getAllNoUserCars = async (request, reply) => {
-  try {
-    const cars = await Car.findAll({
-      where: {
-        userId: {
-          [Op.ne]: request.user.userId,
-        },
-      },
-    });
     reply.send({ cars });
   } catch (error) {
     reply.status(500).send({ error });
@@ -52,7 +36,7 @@ export const createCar = async (request, reply) => {
   try {
     const { model, brand, cv, year } = request.body;
 
-    console.log("User: ",request.user);
+    console.log("User: ", request.user);
 
     await Car.create({
       model,

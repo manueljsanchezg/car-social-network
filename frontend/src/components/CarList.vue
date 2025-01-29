@@ -1,6 +1,6 @@
 <template>
     <div class="car-list-container">
-        <h2 class="title">Cars</h2>
+        <h2 class="title">{{ props.title }}</h2>
         <p class="loading" v-if="isLoading">Cargando...</p>
         <ul class="car-list" v-if="!isLoading">
             <li v-for="car in cars" :key="car.id">
@@ -14,10 +14,13 @@
 import { ref, onMounted } from 'vue';
 import { getAllNoUsersCars } from '../services/carService';
 
-defineProps({
-    currentUser: {
-        type: Boolean,
-        default: false
+const props = defineProps({
+    title: {
+        type: String
+    },
+    type: {
+        type: String,
+        default: "all"
     }
 })
 
@@ -26,7 +29,7 @@ const isLoading = ref(true)
 
 onMounted(async () => {
     try {
-        const data = await getAllNoUsersCars();
+        const data = await getAllNoUsersCars(props.type);
         console.log(data);
         cars.value = data.cars;
     } catch (error) {

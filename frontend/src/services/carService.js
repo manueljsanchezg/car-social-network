@@ -2,9 +2,10 @@ import { jwtStorage } from "../storage/userStorage.js";
 
 const API_URL = "http://localhost:3000/cars";
 
-export const getAllNoUsersCars = async () => {
+export const getAllNoUsersCars = async (type = "all") => {
   try {
-    const response = await fetch(`${API_URL}/no-user`, {
+    console.log("URL de la API:", `${API_URL}?type=${type}`);
+    const response = await fetch(`${API_URL}?type=${type}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

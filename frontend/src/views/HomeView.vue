@@ -1,6 +1,6 @@
 <template>
     <div>
-        <CarList />
+        <CarList title="Cars" type="no-user" />
     </div>
 </template>
 
