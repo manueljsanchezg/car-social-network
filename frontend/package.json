@@ -13,7 +13,9 @@
     "frontend": "file:",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
-    "vuetify": "^3.7.7"
+    "vuetify": "^3.7.7",
+    "zod": "^3.24.1",
+    "zod-validation-error": "^3.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",

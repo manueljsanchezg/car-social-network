@@ -15,7 +15,9 @@ export const getAllNoUsersCars = async () => {
       const error = await response.json();
       throw new Error(error.message);
     }
-    return await response.json();
+    const cars = await response.json();
+    console.log(cars);
+    return cars;
   } catch (error) {
     console.error(error);
   }
