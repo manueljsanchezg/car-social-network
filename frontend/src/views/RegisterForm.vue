@@ -36,7 +36,6 @@ const handleRegister = async () => {
         userDataSchema.parse(userData.value);
         const response = await registerUser(userData.value);
         if (response.success) {
-            //console.log(response.message);
             router.push("/login");
         } else {
             errorValidation.value.message = response.message;
@@ -50,7 +49,6 @@ const handleRegister = async () => {
                     message: e.message,
                 };
             });
-            console.log(fieldErrors);
             fieldErrors.forEach((e) => {
                 if(e.field === "email") {
                     errorValidation.value.emailError = e.message;

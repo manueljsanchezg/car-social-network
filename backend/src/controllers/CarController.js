@@ -1,5 +1,6 @@
 import { Op } from "sequelize";
 import { Car } from "../model/Car.js";
+import { User } from "../model/User.js";
 
 export const getCars = async (request, reply) => {
   try {
@@ -14,7 +15,13 @@ export const getCars = async (request, reply) => {
       whereClause = { userId: { [Op.ne]: request.user.userId } };
     }
 
-    const cars = await Car.findAll({ where: whereClause });
+    const cars = await Car.findAll({
+      where: whereClause,
+      include: {
+        model: User,
+        attributes: ["email"],
+      },
+    });
 
     reply.send({ cars });
   } catch (error) {

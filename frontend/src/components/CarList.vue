@@ -3,8 +3,8 @@
         <h2 class="title">{{ props.title }}</h2>
         <p class="loading" v-if="isLoading">Cargando...</p>
         <ul class="car-list" v-if="!isLoading">
-            <li v-for="car in cars" :key="car.id">
-                {{ car.brand }} - {{ car.model }} - {{ car.cv }}
+            <li v-for="car in cars" :key="car.id" >
+                <CarCard :car="car" />
             </li>
         </ul>
     </div>
@@ -13,6 +13,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { getAllNoUsersCars } from '../services/carService';
+import CarCard from './CarCard.vue';
 
 const props = defineProps({
     title: {
@@ -30,7 +31,6 @@ const isLoading = ref(true)
 onMounted(async () => {
     try {
         const data = await getAllNoUsersCars(props.type);
-        console.log(data);
         cars.value = data.cars;
     } catch (error) {
         console.error(error)
@@ -43,15 +43,20 @@ onMounted(async () => {
 
 <style scoped>
 .car-list-container {
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
+    padding-top: 64px;
+    padding-bottom: 10px;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 }
 
 .car-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    list-style-type: none;
 }
+
 </style>

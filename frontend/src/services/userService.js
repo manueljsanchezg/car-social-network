@@ -30,9 +30,7 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async (userData) => {
   try {
-    console.log(userData);
     const requestBody = JSON.stringify(userData);
-    console.log(requestBody);
     const response = await fetch(`${API_URL}/login`, {
       method: "POST",
       headers: {

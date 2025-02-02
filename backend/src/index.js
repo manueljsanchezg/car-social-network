@@ -36,7 +36,20 @@ const start = async () => {
 
     await Car.bulkCreate([
       {id: 1, model: "modelo1", brand: "marca1", cv: 90, year: 2018, userId: 1},
-      {id: 2, model: "modelo2", brand: "marca2", cv: 90, year: 2018, userId: 2}
+      {id: 2, model: "modelo3", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 3, model: "modelo5", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 4, model: "modelo7", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 5, model: "modelo9", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 6, model: "modelo11", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 7, model: "modelo13", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 8, model: "modelo15", brand: "marca1", cv: 90, year: 2018, userId: 1},
+      {id: 9, model: "modelo2", brand: "marca2", cv: 90, year: 2018, userId: 2},
+      {id: 10, model: "modelo4", brand: "marca2", cv: 90, year: 2018, userId: 2},
+      {id: 11, model: "modelo6", brand: "marca2", cv: 90, year: 2018, userId: 2},
+      {id: 12, model: "modelo8", brand: "marca2", cv: 90, year: 2018, userId: 2},
+      {id: 13, model: "modelo10", brand: "marca2", cv: 90, year: 2018, userId: 2},
+      {id: 14, model: "modelo12", brand: "marca2", cv: 90, year: 2018, userId: 2},
+      {id: 15, model: "modelo14", brand: "marca2", cv: 90, year: 2018, userId: 2}
     ])
 
     server.register(jwtPlugin);

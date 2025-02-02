@@ -10,9 +10,9 @@
 </template>
 
 <script setup>
-
 import { ref, watch } from 'vue';
 import { emailStorage, jwtStorage } from '../storage/userStorage';
+import { router } from '../routes/routes';
 
 const isAuthenticated = ref(!!jwtStorage.value);
 
@@ -23,6 +23,7 @@ watch(jwtStorage, (newValue) => {
 const handleLogout = () => {
   emailStorage.value = "";
   jwtStorage.value = "";
+  router.push("/login")
 }
 
 </script>

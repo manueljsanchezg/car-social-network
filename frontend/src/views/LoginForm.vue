@@ -38,7 +38,6 @@ const handleLogin = async () => {
         userDataSchema.parse(userData.value);
         const response = await loginUser(userData.value);
         if (response.success) {
-            console.log(response.token);
             emailStorage.value = response.email;
             jwtStorage.value = response.token;
             router.push("/");
@@ -54,7 +53,6 @@ const handleLogin = async () => {
                     message: e.message,
                 };
             });
-            console.log(fieldErrors);
             fieldErrors.forEach((e) => {
                 if (e.field === "email") {
                     errorValidation.value.emailError = e.message;

@@ -4,7 +4,6 @@ const API_URL = "http://localhost:3000/cars";
 
 export const getAllNoUsersCars = async (type = "all") => {
   try {
-    console.log("URL de la API:", `${API_URL}?type=${type}`);
     const response = await fetch(`${API_URL}?type=${type}`, {
       method: "GET",
       headers: {
@@ -17,46 +16,30 @@ export const getAllNoUsersCars = async (type = "all") => {
       throw new Error(error.message);
     }
     const cars = await response.json();
-    console.log(cars);
     return cars;
   } catch (error) {
     console.error(error);
   }
 };
 
-export const getAllUsersCars = async () => {
-  try {
-    const response = await fetch(`${API_URL}/user`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${jwtStorage.value}`,
-      },
-    });
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message);
-    }
-    return await response.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const createCar = async () => {
+export const createCar = async (carData) => {
     try {
+      const requestBody = JSON.stringify(carData);
+      console.log(requestBody);
       const response = await fetch(`${API_URL}`, {
           method: "POST",
           headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${jwtStorage.value}`,
-          }
+          },
+          body: requestBody
       });
       if (!response.ok) {
           const error = await response.json();
-          throw new Error(error.message);
+          return { success: false, message: error};
         }
-        return await response.json();
+      const carCrated = await response.json(); 
+      return { success: true, ...carCrated};
     } catch (error) {
       console.error(error);
     }
